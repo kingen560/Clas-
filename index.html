@@ -1,0 +1,641 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>From Search to Choice · Clas Ohlson</title><meta name="description" content="An animated customer experience audit of Clas Ohlson in Oslo and Strømmen."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Public+Sans:wght@400;600;700&family=DM+Mono&display=swap"><style>#stage { --ground:#0E2A26; --main:#F4C430; --second:#EEF3EA; --accent:#FF6A4D; color:var(--second); font-family:var(--sans, system-ui, sans-serif);
+  --peg:color-mix(in srgb, var(--second) 9%, transparent); --rail:color-mix(in srgb, var(--second) 38%, var(--ground)); --panel:color-mix(in srgb, var(--ground) 88%, var(--second)); --dim:color-mix(in srgb, var(--second) 62%, var(--ground)); --shadowtag:color-mix(in srgb, var(--main) 55%, var(--ground)) }
+.ground { position:absolute; inset:0; overflow:hidden; background:radial-gradient(circle, var(--peg) 2.6px, transparent 3.2px) 0 0/48px 48px, var(--ground) }
+.edge { position:absolute; inset:0; pointer-events:none; background:radial-gradient(110% 90% at 50% 40%, transparent 55%, color-mix(in srgb, var(--ground) 70%, black)) }
+.words { position:absolute; margin:0; display:flex; flex-direction:column; gap:20px } .words > * { margin:0 }
+.line { font-family:var(--display, var(--sans, system-ui, sans-serif)); font-size:96px; line-height:.98; font-weight:800; text-wrap:balance }
+.line.xl { font-size:150px } .line.md { font-size:76px } .line.sm { font-size:54px; font-weight:600; line-height:1.02 }
+.sub { font-size:34px; line-height:1.35; color:var(--dim) } .body { font-size:30px; line-height:1.35 }
+.mono, .num { font-family:var(--mono, ui-monospace, monospace); font-variant-numeric:tabular-nums }
+.eyebrow { font-family:var(--mono, ui-monospace, monospace); font-size:26px; letter-spacing:.14em; text-transform:uppercase; color:var(--main) }
+.gold { color:var(--main) } .hot { color:var(--accent) } .dim { color:var(--dim) }
+.box { position:absolute; margin:0; box-sizing:border-box }
+.tag { position:absolute; box-sizing:border-box; background:var(--main); color:var(--ground); border-radius:8px; padding:26px 30px; box-shadow:0 10px 0 var(--shadowtag), 0 24px 40px rgba(0,0,0,.25) }
+.tag::before { content:''; position:absolute; top:16px; right:16px; width:16px; height:16px; border-radius:50%; background:var(--ground) }
+.tag.ink { background:var(--second); box-shadow:0 10px 0 color-mix(in srgb, var(--second) 45%, var(--ground)), 0 24px 40px rgba(0,0,0,.25) }
+.tag.hot { background:var(--accent); box-shadow:0 10px 0 color-mix(in srgb, var(--accent) 55%, var(--ground)), 0 24px 40px rgba(0,0,0,.25) }
+.sign { position:absolute; box-sizing:border-box; background:var(--second); color:var(--ground); border-radius:6px; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px 40px; font-family:var(--display, var(--sans, system-ui, sans-serif)); font-weight:800; line-height:1 }
+.panel { position:absolute; box-sizing:border-box; border-radius:12px; background:var(--panel); border:2px solid color-mix(in srgb, var(--second) 16%, transparent) }
+.rail { position:absolute; height:14px; border-radius:7px; background:var(--rail); transform-origin:0 50% }
+.chip { display:inline-flex; align-items:center; padding:8px 16px; border-radius:22px; font-family:var(--mono, ui-monospace, monospace); font-size:22px; letter-spacing:.06em; border:2px solid currentColor }
+.art { position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+</style><style>
+*{box-sizing:border-box}body{margin:0;background:#091c19;color:#eef3ea;font-family:'Public Sans',sans-serif}main{max-width:1500px;margin:auto;padding:28px}header{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:22px}h1{font-size:clamp(20px,3vw,32px);margin:6px 0}.label{color:#f4c430;font-size:11px;letter-spacing:.16em;text-transform:uppercase}.meta{font-size:12px;color:#adbbb6}.screen{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0e2a26;border:1px solid #345048;border-radius:10px}#stage{position:absolute;width:1920px;height:1080px;transform-origin:top left;--display:'Barlow Condensed';--sans:'Public Sans';--mono:'DM Mono'}#controls{display:flex;gap:12px;align-items:center;padding:18px 0;flex-wrap:wrap}button,select{background:#183b33;border:1px solid #466157;color:#eef3ea;border-radius:7px;padding:11px 15px;font:inherit;font-size:13px;cursor:pointer}button:hover{background:#2c5145}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #f4c430}#play{background:#f4c430;color:#0e2a26;border-color:#f4c430;font-weight:bold;min-width:88px}#seek{flex:1;min-width:100px;accent-color:#f4c430}#time{font:12px 'DM Mono',monospace}select{max-width:100%}.note{font-size:12px;color:#adbbb6;line-height:1.6}.screen:fullscreen{width:100vw;height:100vh;border:0;border-radius:0;aspect-ratio:auto}footer{border-top:1px solid #28443b;padding-top:14px;display:flex;justify-content:space-between;gap:20px}@media(max-width:600px){main{padding:14px}header .meta{display:none}#controls{gap:8px}footer{display:block}#time{font-size:10px}}</style>
+<main><header><div><div class="label">Clas Ohlson · Customer experience audit</div><h1>From Search to Choice</h1></div><div class="meta">BI Norwegian Business School · 2026</div></header><div class="screen" id="screen"><div id="stage"></div></div><div id="controls"><button id="play" aria-label="Play presentation">Play</button><input id="seek" type="range" min="0" value="0" step="0.1" aria-label="Presentation position"><span id="time"></span><button id="sound" aria-pressed="false">Sound off</button><button id="full">Full screen</button><select id="chapters" aria-label="Choose scene"></select></div><footer><div class="note">6 store visits · 4 stores · 74 Google reviews<br>MST 0220 Customer Experience Management</div><div class="note">Animated presentation · Use Space to play or pause<br>Sound is recreated in the browser from the supplied score.</div></footer></main><script>const scenes=new Map();const clamp01=x=>Math.max(0,Math.min(1,x));const seg=(t,a,b)=>clamp01((t-a)/(b-a));const eo=x=>1-(1-x)**3;const eio=x=>x<.5?4*x*x*x:1-(-2*x+2)**3/2;const lerp=(a,b,x)=>a+(b-a)*x;const eob=(x,s=1.70158)=>1+(s+1)*(x-1)**3+s*(x-1)**2;
+window.kit={stage:document.getElementById('stage'),seg,eo,eio,eob,lerp,clamp01,scene:(id,s)=>scenes.set(id,s),h:html=>{const t=document.createElement('template');t.innerHTML=html;return t.content},TextFx:{fadeFromRight:(el,t,a)=>{let p=eo(seg(t,a,a+.65));el.style.opacity=p;el.style.transform=`translateX(${lerp(35,0,p)}px)`}},score:fn=>window.makeScore=fn};
+// The store's fixtures. Pegboard ground and vignette live in base.css; these build the rails, signs and tags every scene hangs things on.
+window.W = {
+  // A hanging sign on two cords from the ceiling. Its group pivots at the ceiling point (cx, -160) so a scene swings it by one rotate.
+  sign(cls, cx, y, w, h, size, text) {
+    const x = cx - w / 2;
+    return '<div class="' + cls + '" style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:' + cx + 'px -160px">' +
+      '<div class="box" style="left:' + (x + w * 0.18) + 'px;top:0;width:4px;height:' + y + 'px;background:var(--rail)"></div>' +
+      '<div class="box" style="left:' + (x + w * 0.82 - 4) + 'px;top:0;width:4px;height:' + y + 'px;background:var(--rail)"></div>' +
+      '<div class="sign" style="left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;min-height:' + h + 'px;font-size:' + size + 'px">' + text + '</div></div>';
+  },
+  // A shelf rail with two wall brackets.
+  rail(cls, x, y, w) {
+    return '<div class="rail ' + cls + '" style="left:' + x + 'px;top:' + y + 'px;width:' + w + 'px"></div>' +
+      '<div class="box" style="left:' + (x + 30) + 'px;top:' + (y + 10) + 'px;width:10px;height:26px;border-radius:3px;background:var(--rail)"></div>' +
+      '<div class="box" style="left:' + (x + w - 40) + 'px;top:' + (y + 10) + 'px;width:10px;height:26px;border-radius:3px;background:var(--rail)"></div>';
+  },
+  // The three observation dates on one line; the active ones lit.
+  dates(cls, active) {
+    const d = [['19 Oct 2026', '3 visits'], ['26 Oct 2026', '2 visits'], ['3 Nov 2026', '1 visit']];
+    return '<div class="' + cls + '" style="position:absolute;left:140px;top:70px;width:1640px;height:90px">' +
+      '<div class="box" style="left:10px;top:21px;width:1100px;height:4px;background:var(--rail)"></div>' +
+      d.map((x, i) => { const on = active.indexOf(i) >= 0; return '<div class="box" style="left:' + (i * 520) + 'px;top:0;display:flex;gap:16px;align-items:flex-start">' +
+        '<div style="width:28px;height:28px;margin-top:9px;border-radius:50%;box-sizing:border-box;border:4px solid ' + (on ? 'var(--main)' : 'var(--rail)') + ';background:' + (on ? 'var(--main)' : 'var(--ground)') + '"></div>' +
+        '<div style="display:flex;flex-direction:column;gap:4px;padding:0 10px;background:var(--ground)"><span class="mono" style="font-size:28px;color:' + (on ? 'var(--main)' : 'var(--dim)') + '">' + x[0] + '</span><span class="mono dim" style="font-size:20px">' + x[1] + '</span></div></div>'; }).join('') + '</div>';
+  },
+  // An outcome stamp: yellow for a suitable product found, coral for not resolved.
+  stamp(cls, ok, text) {
+    return '<div class="tag ' + (ok ? '' : 'hot ') + cls + '" style="position:relative;display:inline-block;padding:10px 46px 10px 18px;align-self:flex-start"><span class="line sm" style="font-size:34px">' + text + '</span></div>';
+  },
+  // Hang an element: it drops onto its rail at a, overshoots, swings out and keeps a faint sway.
+  hang(el, t, a, i, drop) {
+    const p = kit.eob(kit.seg(t, a, a + 0.55), 1.7), since = Math.max(0, t - a - 0.55);
+    const sw = kit.lerp(-8, 0, p) + 2.6 * Math.exp(-since * 1.8) * Math.sin(since * 8) + 0.45 * Math.sin(t * 1.3 + i * 1.7);
+    el.style.opacity = Math.min(1, kit.seg(t, a, a + 0.12));
+    el.style.transform = 'translateY(' + kit.lerp(-(drop || 90), 0, p) + 'px) rotate(' + sw.toFixed(2) + 'deg)';
+  },
+  // A slow push on a layer, so no frame is ever frozen.
+  push(el, t, dur, from, to) {
+    el.style.transform = 'scale(' + kit.lerp(from || 1, to || 1.025, kit.eio(kit.seg(t, 0, dur))) + ')';
+  },
+};
+
+
+(()=>{const { seg, eo, eio, eob, lerp } = kit;
+kit.scene('intro', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="intro-cam" style="position:absolute;inset:0;transform-origin:960px 420px">' +
+      W.sign('intro-hang', 960, 150, 1440, 260, 112, 'From product search to informed choice') +
+      '<div class="words" style="left:260px;top:520px;width:1400px;align-items:center;text-align:center;gap:26px">' +
+      '<p class="eyebrow intro-eye">Clas Ohlson · Customer experience audit</p>' +
+      '<p class="intro-q" style="font-size:40px;line-height:1.38">How does access to product information and employee assistance shape customers’ ability to make informed product choices across Clas Ohlson’s online and in-store customer journey?</p>' +
+      '<p class="mono dim intro-c" style="font-size:24px">MST 0220 Customer Experience Management · BI · 2026</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const q = s => kit.stage.querySelector(s);
+    Object.assign(this, { cam: q('.intro-cam'), hang: q('.intro-hang'), eye: q('.intro-eye'), qn: q('.intro-q'), c: q('.intro-c') });
+  },
+  render(t) {
+    W.push(this.cam, t, 10, 1, 1.03);
+    const drop = eob(seg(t, -1.0, -0.15), 1.5);
+    const sw = 1.8 * Math.exp(-Math.max(0, t + 0.15) * 0.8) * Math.sin((t + 0.15) * 3) + 0.3 * Math.sin(t * 1.4);
+    this.hang.style.transform = 'translateY(' + lerp(-700, 0, drop) + 'px) rotate(' + (sw * 0.5).toFixed(2) + 'deg)';
+    this.eye.style.opacity = 1;
+    const a = eo(seg(t, 1.0, 1.8));
+    this.qn.style.opacity = a; this.qn.style.transform = 'translateY(' + lerp(26, 0, a) + 'px)';
+    const c = eo(seg(t, 2.2, 2.8));
+    this.c.style.opacity = c;
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, lerp, TextFx } = kit;
+const NUMS = [['6', 'mystery-shopping visits', 'Mystery shopping', ''], ['4', 'stores', 'Mystery shopping', ''], ['3', 'observation dates', 'Mystery shopping', ''], ['74', 'Google Maps reviews', 'Secondary data', 'ink']];
+kit.scene('method', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="method-cam" style="position:absolute;inset:0;transform-origin:960px 540px">' +
+      '<div class="words" style="left:140px;top:96px;width:1640px;gap:14px"><p class="eyebrow">Data collection</p><h2 class="line md method-line">What the findings rest on</h2></div>' +
+      W.rail('method-rail', 120, 318, 1680) +
+      NUMS.map((n, i) => '<div class="tag ' + n[3] + ' method-t" style="left:' + (140 + i * 420) + 'px;top:346px;width:380px;transform-origin:190px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:6px"><span class="mono" style="font-size:22px;letter-spacing:.08em">' + n[2] + '</span><span class="line num" style="font-size:170px;line-height:.9">' + n[0] + '</span><span class="line sm" style="font-size:44px">' + n[1] + '</span></div></div>').join('') +
+      '<div class="words" style="left:140px;top:770px;width:1640px;gap:16px">' +
+      '<p class="body method-s">The 6 visits: Torggata ×2 · Stenersgata 2 ×2 · Strømmen Storsenter ×1 · Storo Storsenter ×1</p>' +
+      '<p class="body method-s">19 October: 3 visits · 26 October: 2 visits · 3 November: 1 visit. 5 of the 6 began with a documented online search.</p>' +
+      '<p class="body dim method-s">No purchases were made.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.method-cam'), line: kit.stage.querySelector('.method-line'), rail: kit.stage.querySelector('.method-rail'), tags: all('.method-t'), ss: all('.method-s') });
+  },
+  render(t) {
+    W.push(this.cam, t, 10, 1, 1.025);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.3, 0.9)) + ')';
+    this.tags.forEach((el, i) => W.hang(el, t, 0.9 + i * 0.5, i, 110));
+    this.ss.forEach((el, i) => { const a = eo(seg(t, 3.4 + i * 0.6, 3.9 + i * 0.6)); el.style.opacity = a; el.style.transform = 'translateX(' + lerp(26, 0, a) + 'px)'; });
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, clamp01, TextFx } = kit;
+const STEPS = ['Search online', 'Check stock and shelf', 'Find the product', 'Get help', 'Understand the right choice'];
+const NX = i => 290 + i * 335, PY = 600;
+const T_NODE = [2.6, 3.3, 4.0, 4.7, 4.7];
+kit.scene('journey', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="journey-cam" style="position:absolute;inset:0;transform-origin:960px 560px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Scope</p><h2 class="line md journey-line">The journey we audited</h2></div>' +
+      '<div class="box journey-band" style="left:140px;top:262px;width:640px;border-top:4px solid var(--main);padding-top:10px"><span class="mono gold" style="font-size:24px;letter-spacing:.12em">ONLINE</span></div>' +
+      '<div class="box journey-band" style="left:810px;top:262px;width:970px;border-top:4px solid var(--second);padding-top:10px"><span class="mono" style="font-size:24px;letter-spacing:.12em">IN THE STORE</span></div>' +
+      STEPS.map((s, i) => '<div class="sign journey-s" style="left:' + (NX(i) - 150) + 'px;top:340px;width:300px;min-height:150px;flex-direction:column;gap:8px;padding:16px 18px;transform-origin:150px -20px' + (i < 2 ? ';background:var(--main)' : '') + '"><span class="mono" style="font-size:22px">' + (i + 1) + '</span><span style="font-size:44px">' + s + '</span></div>').join('') +
+      '<div class="box" style="left:' + NX(0) + 'px;top:' + (PY - 3) + 'px;width:' + (NX(4) - NX(0)) + 'px;height:6px;border-radius:3px;background:var(--rail)"></div>' +
+      STEPS.map((s, i) => '<div class="box journey-n" style="left:' + (NX(i) - 18) + 'px;top:' + (PY - 18) + 'px;width:36px;height:36px;border-radius:50%;background:var(--ground);border:6px solid var(--rail)"></div>').join('') +
+      '<div class="box journey-m" style="left:-26px;top:' + (PY - 26) + 'px;width:52px;height:52px;border-radius:50%;background:var(--main);box-shadow:0 0 0 10px color-mix(in srgb, var(--main) 25%, transparent)"></div>' +
+      '<div class="tag hot journey-brk" style="left:' + (NX(3) - 60) + 'px;top:' + (PY + 50) + 'px;padding:12px 50px 12px 20px"><span class="line sm" style="font-size:38px">Where the journey breaks</span></div>' +
+      '<div class="words" style="left:140px;top:790px;width:1300px;gap:16px"><p class="line sm journey-a">Finding a product is not the same as choosing the right one.</p>' +
+      '<p class="sub journey-b">Online stock and shelf information helped customers find products. Customers with little product knowledge still needed someone to explain performance, compatibility and fit.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const q = s => kit.stage.querySelector(s), all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: q('.journey-cam'), line: q('.journey-line'), bands: all('.journey-band'), signs: all('.journey-s'), nodes: all('.journey-n'), m: q('.journey-m'), brk: q('.journey-brk'), a: q('.journey-a'), b: q('.journey-b') });
+  },
+  render(t) {
+    W.push(this.cam, t, 12, 1, 1.025);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    this.bands.forEach((el, i) => { el.style.opacity = eo(seg(t, 0.6 + i * 0.3, 1.1 + i * 0.3)); });
+    this.signs.forEach((el, i) => W.hang(el, t, 1.0 + i * 0.3, i, 70));
+    let x = NX(0);
+    for (let i = 1; i < 4; i++) x = lerp(x, NX(i), eio(seg(t, T_NODE[i - 1] + 0.15, T_NODE[i])));
+    const stall = t > 4.7 ? 10 * Math.sin((t - 4.7) * 5) * Math.exp(-(t - 4.7) * 0.6) : 0;
+    this.m.style.opacity = Math.min(1, seg(t, 2.3, 2.6));
+    this.m.style.transform = 'translateX(' + (x + stall) + 'px)';
+    this.nodes.forEach((el, i) => {
+      const reached = i < 3 && t >= T_NODE[i], bad = i >= 3 && t >= 5.0;
+      el.style.borderColor = bad ? 'var(--accent)' : reached ? 'var(--main)' : 'var(--rail)';
+    });
+    this.signs.forEach((el, i) => { if (i >= 3) el.style.background = t >= 5.0 ? 'var(--accent)' : 'var(--second)'; });
+    const k = eob(seg(t, 5.1, 5.6), 1.6);
+    this.brk.style.opacity = Math.min(1, seg(t, 5.1, 5.2)); this.brk.style.transform = 'scale(' + lerp(0.6, 1, k) + ') rotate(' + lerp(-6, -2, k) + 'deg)';
+    TextFx.fadeFromRight(this.a, t, 5.7);
+    const b = eo(seg(t, 6.6, 7.2));
+    this.b.style.opacity = b; this.b.style.transform = 'translateX(' + lerp(26, 0, b) + 'px)';
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const V = [
+  ['MS1 · 12:15–12:35', 'Torggata', 'Wi-Fi routers and lamps', 'About 10 minutes trying to get attention. No one approached.', false, 'Left without help', ''],
+  ['MS2 · 12:40–12:55', 'Stenersgata 2', 'Wi-Fi routers and lamps', 'Asked for help after about 3 minutes. Options explained; same router as found online.', true, 'Router found', 'Lamp question unresolved'],
+  ['MS4 · 16:58–17:17', 'Strømmen Storsenter', 'Mouse traps', 'Helped about a minute after asking. Differences, use and placement explained.', true, 'Product found', '']
+];
+kit.scene('day-one', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="day-one-cam" style="position:absolute;inset:0;transform-origin:960px 600px">' + W.dates('day-one-dates', [0]) +
+      '<div class="words" style="left:140px;top:190px;width:1640px"><h2 class="line md day-one-line">19 October: three visits in one afternoon</h2></div>' +
+      W.rail('day-one-rail', 120, 316, 1680) +
+      V.map((v, i) => '<div class="tag ink day-one-c" style="left:' + (140 + i * 560) + 'px;top:342px;width:520px;transform-origin:260px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:14px"><span class="mono" style="font-size:26px">' + v[0] + '</span>' +
+        '<span class="line sm" style="font-size:62px">' + v[1] + '</span><span class="mono" style="font-size:24px;letter-spacing:.04em">' + v[2] + '</span>' +
+        '<span style="font-size:31px;line-height:1.3">' + v[3] + '</span>' + W.stamp('day-one-st', v[4], v[5]) +
+        (v[6] ? '<span class="mono" style="font-size:24px">' + v[6] + '</span>' : '') + '</div></div>').join('') +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.day-one-cam'), dates: kit.stage.querySelector('.day-one-dates'), line: kit.stage.querySelector('.day-one-line'), rail: kit.stage.querySelector('.day-one-rail'), cards: all('.day-one-c'), sts: all('.day-one-st') });
+  },
+  render(t) {
+    W.push(this.cam, t, 16, 1, 1.02);
+    this.dates.style.opacity = eo(seg(t, 0, 0.5));
+    TextFx.fadeFromRight(this.line, t, 0.3);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.6, 1.2)) + ')';
+    this.cards.forEach((el, i) => W.hang(el, t, 1.4 + i * 3.2, i, 120));
+    this.sts.forEach((el, i) => {
+      const a = 1.4 + i * 3.2 + 1.6, p = eob(seg(t, a, a + 0.4), 1.9);
+      el.style.opacity = Math.min(1, seg(t, a, a + 0.08));
+      el.style.transform = 'scale(' + lerp(1.7, 1, p) + ') rotate(' + lerp(-12, -3, p) + 'deg)';
+    });
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, clamp01, TextFx } = kit;
+const V = [
+  ['MS5 · 26 Oct · 15:34–15:42', 'Stenersgata 2', 'Space heaters and lamps · online: Mill SG2000MEC, NOK 699', 'Waited about 3 minutes. Vague answers on suitability, popularity and differences. Unsure where football pumps were.', 3, 3, false, 'No suitable heater found'],
+  ['MS3 · 26 Oct · about 16:00', 'Torggata', 'Computing and multimedia · no online search documented', 'Busy store. One employee, at the information desk. Asked to come back in a few hours or the next day.', 0, 0, false, 'Not resolved'],
+  ['MS6 · 3 Nov · 14:26–14:35', 'Storo Storsenter', 'Electric toothbrushes · online: Oral-B iO 2, NOK 499', 'Waited about 3 minutes, then asked. Models, brush heads and the included charger explained.', 2, 4, true, 'Product found']
+];
+kit.scene('later', {
+  init(kit) {
+    const meter = v => !v[4] ? '' : '<div style="display:flex;flex-direction:column;gap:8px"><span class="mono" style="font-size:22px">Feeling score, 1–5</span><div style="display:flex;gap:8px;align-items:center">' + [0, 1, 2, 3, 4].map(() => '<div class="later-seg" style="width:44px;height:28px;border-radius:5px;box-sizing:border-box;border:3px solid var(--ground)"></div>').join('') + '<span class="line later-n" style="font-size:46px;margin-left:12px"></span></div></div>';
+    kit.stage.append(kit.h('<div class="ground"><div class="later-cam" style="position:absolute;inset:0;transform-origin:960px 600px">' + W.dates('later-dates', [1, 2]) +
+      '<div class="words" style="left:140px;top:190px;width:1640px"><h2 class="line md later-line">26 October and 3 November: three more visits</h2></div>' +
+      W.rail('later-rail', 120, 316, 1680) +
+      V.map((v, i) => '<div class="tag ink later-c" style="left:' + (140 + i * 560) + 'px;top:342px;width:520px;transform-origin:260px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:13px"><span class="mono" style="font-size:24px">' + v[0] + '</span>' +
+        '<span class="line sm" style="font-size:58px">' + v[1] + '</span><span class="mono" style="font-size:21px;line-height:1.35">' + v[2] + '</span>' +
+        '<span style="font-size:28px;line-height:1.3">' + v[3] + '</span>' + meter(v) + W.stamp('later-st', v[6], v[7]) + '</div></div>').join('') +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.later-cam'), dates: kit.stage.querySelector('.later-dates'), line: kit.stage.querySelector('.later-line'), rail: kit.stage.querySelector('.later-rail'), cards: all('.later-c'), sts: all('.later-st'), segs: all('.later-seg'), ns: all('.later-n') });
+  },
+  render(t) {
+    W.push(this.cam, t, 20, 1, 1.02);
+    this.dates.style.opacity = eo(seg(t, 0, 0.5));
+    TextFx.fadeFromRight(this.line, t, 0.3);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.6, 1.2)) + ')';
+    let m = 0;
+    V.forEach((v, i) => {
+      const a = 1.4 + i * 4.0;
+      W.hang(this.cards[i], t, a, i, 120);
+      if (v[4]) {
+        const s0 = a + 2.4, lvl = t < s0 + 0.8 ? v[4] * eo(seg(t, s0, s0 + 0.6)) : v[4] + (v[5] - v[4]) * eob(seg(t, s0 + 0.8, s0 + 1.3), 1.5);
+        for (let k = 0; k < 5; k++) { const f = clamp01(lvl - k); this.segs[m * 5 + k].style.background = 'linear-gradient(90deg, ' + (v[6] ? 'var(--ground)' : 'var(--accent)') + ' ' + (f * 100) + '%, transparent 0)'; }
+        const txt = t < s0 + 0.8 ? String(v[4]) : v[4] + ' → ' + v[5];
+        if (this.ns[m].textContent !== txt) this.ns[m].textContent = txt;
+        m++;
+      }
+      const s = a + 3.4, p = eob(seg(t, s, s + 0.4), 1.9);
+      this.sts[i].style.opacity = Math.min(1, seg(t, s, s + 0.08));
+      this.sts[i].style.transform = 'scale(' + lerp(1.7, 1, p) + ') rotate(' + lerp(-12, -3, p) + 'deg)';
+    });
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const R = [
+  ['MS1 · 19 Oct · 12:15', 'Torggata', false, 'About 10 min, no help'],
+  ['MS2 · 19 Oct · 12:40', 'Stenersgata 2', true, 'About 3 min, then asked'],
+  ['MS4 · 19 Oct · 16:58', 'Strømmen Storsenter', true, '1 min 12 s after asking'],
+  ['MS5 · 26 Oct · 15:34', 'Stenersgata 2', true, 'About 3 min'],
+  ['MS3 · 26 Oct · 16:00', 'Torggata', true, 'Not recorded'],
+  ['MS6 · 3 Nov · 14:26', 'Storo Storsenter', true, 'About 3 min']
+];
+kit.scene('first-move', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="first-move-cam" style="position:absolute;inset:0;transform-origin:960px 520px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Who made the first move?</p><h2 class="line md first-move-line">An employee approached first in 0 of 6 visits.</h2></div>' +
+      '<div class="box mono dim" style="left:140px;top:262px;width:1640px;display:flex;font-size:22px;letter-spacing:.1em"><span style="width:740px">VISIT</span><span style="width:400px">FIRST CONTACT</span><span>RECORDED WAIT</span></div>' +
+      R.map((r, i) => '<div class="box first-move-r" style="left:140px;top:' + (306 + i * 100) + 'px;width:1640px;height:86px;display:flex;align-items:center;border-bottom:2px solid color-mix(in srgb, var(--second) 14%, transparent)">' +
+        '<span class="mono" style="width:340px;font-size:24px">' + r[0] + '</span><span class="line sm" style="width:400px;font-size:42px">' + r[1] + '</span>' +
+        '<span style="width:400px"><span class="chip" style="font-size:24px;color:' + (r[2] ? 'var(--main)' : 'var(--accent)') + '">' + (r[2] ? 'Customer asked' : 'No contact at all') + '</span></span>' +
+        '<span style="font-size:30px">' + r[3] + '</span></div>').join('') +
+      '<div class="words" style="left:140px;top:930px;width:1640px"><p class="mono dim first-move-note" style="font-size:22px">Waits as recorded by the shoppers; most are estimates. The Strømmen wait runs from the request to the start of help.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.first-move-cam'), line: kit.stage.querySelector('.first-move-line'), rows: all('.first-move-r'), note: kit.stage.querySelector('.first-move-note') });
+  },
+  render(t) {
+    W.push(this.cam, t, 13, 1, 1.02);
+    this.rows.forEach((el, i) => { const a = 0.3 + i * 0.55, p = eo(seg(t, a, a + 0.5)); el.style.opacity = p; el.style.transform = 'translateX(' + lerp(60, 0, p) + 'px)'; });
+    this.line.style.opacity = t < 3.6 ? 0 : 1;
+    TextFx.fadeFromRight(this.line, t, 3.7);
+    const n = eo(seg(t, 5.2, 5.8));
+    this.note.style.opacity = n;
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const OK = [['Stenersgata 2', 'MS2 · 19 Oct', 'Wi-Fi router', 1], ['Strømmen Storsenter', 'MS4 · 19 Oct', 'Mousetrap', 0], ['Storo Storsenter', 'MS6 · 3 Nov', 'Electric toothbrush', 0]];
+const NO = [['Torggata', 'MS1 · 19 Oct, 12:15', 'No assistance', 0], ['Torggata', 'MS3 · 26 Oct, 16:00', 'Asked to return later', 0], ['Stenersgata 2', 'MS5 · 26 Oct', 'Advice too vague', 1]];
+kit.scene('outcomes', {
+  init(kit) {
+    const tag = (v, x, row, cls) => '<div class="tag ' + cls + ' outcomes-t" data-st="' + v[3] + '" style="left:' + x + 'px;top:' + (360 + row * 128) + 'px;width:780px;display:flex;align-items:center;gap:20px;padding:16px 50px 16px 26px;transform-origin:390px -14px">' +
+      '<div style="display:flex;flex-direction:column;gap:2px;width:400px"><span class="line sm" style="font-size:44px">' + v[0] + '</span><span class="mono" style="font-size:22px">' + v[1] + '</span></div><span style="font-size:32px;font-weight:600">' + v[2] + '</span></div>';
+    kit.stage.append(kit.h('<div class="ground"><div class="outcomes-cam" style="position:absolute;inset:0;transform-origin:960px 520px">' +
+      '<div class="words outcomes-h" style="left:140px;top:90px;width:780px;gap:4px"><span class="line num gold" style="font-size:150px;line-height:.9">3</span><p class="line sm">visits where a suitable product was identified</p></div>' +
+      '<div class="words outcomes-h" style="left:1000px;top:90px;width:780px;gap:4px"><span class="line num hot" style="font-size:150px;line-height:.9">3</span><p class="line sm">visits where none was identified</p></div>' +
+      [0, 1, 2].map(r => W.rail('outcomes-rail', 120, 340 + r * 128, 1680)).join('') +
+      OK.map((v, i) => tag(v, 140, i, '')).join('') + NO.map((v, i) => tag(v, 1000, i, 'hot')).join('') +
+      '<div class="words" style="left:140px;top:770px;width:1500px;gap:16px"><p class="line sm outcomes-a">Stenersgata 2 appears on both sides.</p>' +
+      '<p class="sub outcomes-b">On 19 October the router was found but the lamp question stayed open, so a single visit can hold both a good and a poor touchpoint.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.outcomes-cam'), hs: all('.outcomes-h'), rails: all('.outcomes-rail'), tags: all('.outcomes-t'), a: kit.stage.querySelector('.outcomes-a'), b: kit.stage.querySelector('.outcomes-b') });
+  },
+  render(t) {
+    W.push(this.cam, t, 13, 1, 1.02);
+    this.hs.forEach((el, i) => { const p = eo(seg(t, 0.1 + i * 2.0, 0.6 + i * 2.0)); el.style.opacity = p; el.style.transform = 'translateY(' + lerp(20, 0, p) + 'px)'; });
+    this.rails.forEach((el, i) => { el.style.transform = 'scaleX(' + eo(seg(t, 0.4 + i * 0.15, 1.0 + i * 0.15)) + ')'; });
+    this.tags.forEach((el, i) => {
+      W.hang(el, t, (i < 3 ? 0.9 : 2.9) + (i % 3) * 0.45, i, 80);
+      const hi = el.dataset.st === '1' ? eo(seg(t, 5.6, 6.1)) : 0;
+      el.style.outline = hi > 0 ? (6 * hi).toFixed(1) + 'px solid var(--second)' : 'none';
+      el.style.outlineOffset = '6px';
+    });
+    TextFx.fadeFromRight(this.a, t, 5.7);
+    const b = eo(seg(t, 6.6, 7.2));
+    this.b.style.opacity = b; this.b.style.transform = 'translateX(' + lerp(26, 0, b) + 'px)';
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp } = kit;
+const STORES = [['Torggata', 35, '3.7'], ['Oslo City (Stenersgata 1)', 39, '4.0']];
+kit.scene('reviews', {
+  init(kit) {
+    const W0 = 1640, w1 = Math.round(W0 * 35 / 74);
+    let dots = '';
+    for (let i = 0; i < 74; i++) dots += '<div class="reviews-d" style="position:absolute;left:' + ((i % 37) * 44) + 'px;top:' + (Math.floor(i / 37) * 46) + 'px;width:30px;height:30px;border-radius:50%;background:' + (i < 21 ? 'var(--main)' : 'var(--rail)') + '"></div>';
+    kit.stage.append(kit.h('<div class="ground"><div class="reviews-cam" style="position:absolute;inset:0;transform-origin:960px 540px">' +
+      '<div class="box" style="left:140px;top:70px;display:flex;align-items:flex-end;gap:30px"><span class="line num gold reviews-n" style="font-size:190px;line-height:.85">74</span>' +
+      '<div class="words" style="position:relative;gap:8px;padding-bottom:10px"><p class="eyebrow">Secondary research</p><p class="line md">Google Maps reviews</p><p class="mono dim" style="font-size:24px">Collected 26 October 2026</p></div></div>' +
+      '<div class="box" style="left:140px;top:340px;width:' + W0 + 'px;height:110px;border-radius:10px;overflow:hidden;background:color-mix(in srgb, var(--second) 8%, transparent)">' +
+      '<div class="box reviews-b" style="left:0;top:0;width:' + (w1 - 4) + 'px;height:110px;background:var(--second);transform-origin:0 50%"></div>' +
+      '<div class="box reviews-b" style="left:' + w1 + 'px;top:0;width:' + (W0 - w1) + 'px;height:110px;background:color-mix(in srgb, var(--second) 72%, var(--ground));transform-origin:0 50%"></div>' +
+      STORES.map((s, i) => '<div class="box reviews-l" style="left:' + (i ? w1 + 28 : 28) + 'px;top:16px;color:var(--ground);display:flex;flex-direction:column;gap:4px"><span class="line sm" style="font-size:44px">' + s[0] + ': ' + s[1] + ' reviews</span><span class="mono" style="font-size:22px">Average ' + s[2] + ' / 5 in the sample</span></div>').join('') + '</div>' +
+      '<div class="box mono dim" style="left:140px;top:470px;font-size:24px">Combined sample average: 3.9 / 5</div>' +
+      '<div class="box" style="left:140px;top:580px;width:1640px;height:92px">' + dots + '</div>' +
+      '<div class="words" style="left:140px;top:700px;width:1640px;gap:10px"><p class="line sm reviews-r">21 of 74 were posted within about a year of collection</p></div>' +
+      '<div class="words" style="left:140px;top:850px;width:1500px"><p class="sub reviews-c">A keyword-based selection, not a random sample. Every percentage in this film describes the coded reviews only, not all Clas Ohlson customers.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.reviews-cam'), n: kit.stage.querySelector('.reviews-n'), bars: all('.reviews-b'), labs: all('.reviews-l'), dots: all('.reviews-d'), r: kit.stage.querySelector('.reviews-r'), c: kit.stage.querySelector('.reviews-c') });
+  },
+  render(t) {
+    W.push(this.cam, t, 12, 1, 1.02);
+    const v = String(Math.round(lerp(37, 74, eo(seg(t, 0, 1.2)))));
+    if (this.n.textContent !== v) this.n.textContent = v;
+    this.bars.forEach((el, i) => { el.style.transform = 'scaleX(' + eio(seg(t, 1.2 + i * 0.6, 1.9 + i * 0.6)) + ')'; });
+    this.labs.forEach((el, i) => { el.style.opacity = eo(seg(t, 1.8 + i * 0.6, 2.3 + i * 0.6)); });
+    this.dots.forEach((el, i) => { const a = 3.6 + i * 0.02, p = eob(seg(t, a, a + 0.3), 1.8); el.style.transform = 'scale(' + p + ')'; });
+    const r = eo(seg(t, 5.4, 5.9));
+    this.r.style.opacity = r; this.r.style.transform = 'translateX(' + lerp(26, 0, r) + 'px)';
+    const c = eo(seg(t, 6.8, 7.4));
+    this.c.style.opacity = c; this.c.style.transform = 'translateX(' + lerp(26, 0, c) + 'px)';
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const ROWS = [['Access to assistance', 17, 8, '68%', 'negative', true], ['Quality of advice', 9, 40, '82%', 'positive', false]];
+kit.scene('split', {
+  init(kit) {
+    const W0 = 1640;
+    const row = (r, i) => { const n = r[1] + r[2], wn = Math.round(W0 * r[1] / n), y = 300 + i * 270;
+      return '<div class="box" style="left:140px;top:' + y + 'px;width:' + W0 + 'px;display:flex;justify-content:space-between;align-items:flex-end"><span class="line sm" style="font-size:60px">' + r[0] + '</span>' +
+        '<span class="split-p" style="display:flex;align-items:baseline;gap:14px"><span class="line num ' + (r[5] ? 'hot' : 'gold') + '" style="font-size:110px;line-height:.9">' + r[3] + '</span><span class="line sm" style="font-size:44px">' + r[4] + '</span></span></div>' +
+        '<div class="box" style="left:140px;top:' + (y + 118) + 'px;width:' + W0 + 'px;height:96px;border-radius:10px;overflow:hidden;background:color-mix(in srgb, var(--second) 8%, transparent)">' +
+        '<div class="box split-neg" style="left:0;top:0;width:' + (wn - 3) + 'px;height:96px;background:var(--accent);transform-origin:0 50%"></div>' +
+        '<div class="box split-pos" style="left:' + wn + 'px;top:0;width:' + (W0 - wn) + 'px;height:96px;background:var(--main);transform-origin:0 50%"></div>' +
+        '<span class="box mono split-l" style="left:24px;top:30px;font-size:30px;font-weight:700;color:var(--ground)">' + r[1] + ' negative</span>' +
+        '<span class="box mono split-l" style="right:24px;top:30px;font-size:30px;font-weight:700;color:var(--ground)">' + r[2] + ' positive</span></div>'; };
+    kit.stage.append(kit.h('<div class="ground"><div class="split-cam" style="position:absolute;inset:0;transform-origin:960px 540px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Coded review mentions</p><h2 class="line md split-line">Getting help is the weak point, not the help itself</h2></div>' +
+      ROWS.map(row).join('') +
+      '<div class="words" style="left:140px;top:880px;width:1640px"><p class="mono dim split-n" style="font-size:24px">Counts are mentions in the 74 coded reviews; one review can carry several codes.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.split-cam'), line: kit.stage.querySelector('.split-line'), neg: all('.split-neg'), pos: all('.split-pos'), labs: all('.split-l'), ps: all('.split-p'), note: kit.stage.querySelector('.split-n') });
+  },
+  render(t) {
+    W.push(this.cam, t, 12, 1, 1.02);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    ROWS.forEach((r, i) => {
+      const a = 1.4 + i * 2.6;
+      this.neg[i].style.transform = 'scaleX(' + eio(seg(t, a, a + 0.7)) + ')';
+      this.pos[i].style.transform = 'scaleX(' + eio(seg(t, a + 0.6, a + 1.3)) + ')';
+      this.labs[i * 2].style.opacity = eo(seg(t, a + 0.5, a + 0.8));
+      this.labs[i * 2 + 1].style.opacity = eo(seg(t, a + 1.1, a + 1.4));
+      const p = eob(seg(t, a + 1.4, a + 1.9), 1.6);
+      this.ps[i].style.opacity = Math.min(1, seg(t, a + 1.4, a + 1.5)); this.ps[i].style.transform = 'scale(' + lerp(0.7, 1, p) + ')'; this.ps[i].style.transformOrigin = '100% 100%';
+    });
+    this.note.style.opacity = eo(seg(t, 7.0, 7.5));
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const L = [
+  ['Journey continuity', 'Lemon & Verhoef (2016)', 'The website told customers where a product was, not which one suited them.', 'MS1, MS2', ''],
+  ['Value creation and participation', 'Grönroos & Voima (2013) · Dong & Sivakumar (2017)', 'Advice built on the customer’s own context created confidence. Absent or postponed advice left the task unresolved.', 'MS1, MS3, MS4', ''],
+  ['Service gaps and blueprinting', 'Parasuraman et al. (1985) · Bitner et al. (2008)', 'Engagement, routing of requests and shelf information mark where to look. The internal cause is not yet known.', 'MS1–MS3', ''],
+  ['Customer centricity', 'Shah et al. (2006)', 'Measure whether advice-seeking customers leave with a clear next step, not only product availability.', 'Implication', 'ink']
+];
+kit.scene('lenses', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="lenses-cam" style="position:absolute;inset:0;transform-origin:960px 560px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Theoretical analysis</p><h2 class="line md lenses-line">Four lenses on the same evidence</h2></div>' +
+      W.rail('lenses-rail', 120, 288, 1680) +
+      L.map((c, i) => '<div class="tag ' + c[4] + ' lenses-c" style="left:' + (140 + i * 415) + 'px;top:314px;width:395px;min-height:470px;transform-origin:197px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:14px"><span class="mono" style="font-size:20px;line-height:1.35">' + c[1] + '</span>' +
+        '<span class="line" style="font-size:54px;line-height:1">' + c[0] + '</span>' +
+        '<span style="font-size:27px;line-height:1.32">' + c[2] + '</span>' +
+        '<span class="mono" style="font-size:20px;font-weight:700">' + c[3] + '</span></div></div>').join('') +
+      '<div class="words" style="left:140px;top:880px;width:1640px"><p class="line sm lenses-a">The expertise exists. Access to it is inconsistent.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.lenses-cam'), line: kit.stage.querySelector('.lenses-line'), rail: kit.stage.querySelector('.lenses-rail'), cards: all('.lenses-c'), a: kit.stage.querySelector('.lenses-a') });
+  },
+  render(t) {
+    W.push(this.cam, t, 18, 1, 1.02);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.4, 1.0)) + ')';
+    this.cards.forEach((el, i) => W.hang(el, t, 1.2 + i * 3.0, i, 120));
+    TextFx.fadeFromRight(this.a, t, 11.6);
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const GA = 780, GB = 1290, END = 1700, X0 = 140, TW = 300;
+const TK = [['MS1 · Torggata 12:15', GA], ['MS3 · Torggata 16:00', GA], ['MS5 · Stenersgata 2', GB], ['MS2 · Stenersgata 2', END], ['MS4 · Strømmen', END], ['MS6 · Storo', END]];
+kit.scene('problem', {
+  init(kit) {
+    const gate = (x, letter, label, q, cls) => '<div class="box ' + cls + '" style="left:' + (x - 6) + 'px;top:330px;width:12px;height:440px;border-radius:6px;background:var(--second)"></div>' +
+      '<div class="sign ' + cls + '" style="left:' + (x - 230) + 'px;top:170px;width:460px;min-height:140px;flex-direction:column;gap:6px;padding:14px 22px"><span class="mono" style="font-size:22px">' + letter + ' · ' + label + '</span><span style="font-size:46px">' + q + '</span></div>';
+    kit.stage.append(kit.h('<div class="ground"><div class="problem-cam" style="position:absolute;inset:0;transform-origin:960px 520px">' +
+      '<div class="words" style="left:140px;top:70px;width:600px"><p class="eyebrow">The customer experience problem</p></div>' +
+      TK.map((k, i) => '<div class="box" style="left:' + X0 + 'px;top:' + (366 + i * 66) + 'px;width:' + (END - X0 + 60) + 'px;height:4px;background:color-mix(in srgb, var(--second) 12%, transparent)"></div>').join('') +
+      gate(GA, 'A', 'Accessibility', 'Can I get help?', 'problem-ga') + gate(GB, 'B', 'Advice quality', 'Can the advice help me choose?', 'problem-gb') +
+      '<div class="box problem-end" style="left:' + (END + 40) + 'px;top:330px;width:8px;height:440px;border-radius:4px;background:var(--main)"></div>' +
+      '<div class="tag problem-end" style="left:' + (END - 160) + 'px;top:200px;padding:12px 44px 12px 18px"><span class="line sm" style="font-size:36px">Informed choice</span></div>' +
+      TK.map((k, i) => '<div class="tag ink problem-t" style="left:0;top:' + (346 + i * 66) + 'px;width:' + TW + 'px;padding:8px 14px;border-radius:6px;box-shadow:none"><span class="mono" style="font-size:22px;font-weight:700">' + k[0] + '</span></div>').join('') +
+      '<div class="words" style="left:140px;top:810px;width:1560px;gap:14px"><p class="line sm problem-a">Customers need help to judge whether a product suits them, but the journey does not consistently ensure that support.</p>' +
+      '<p class="sub problem-b">Each gate can fail on its own: two visits stopped at A, one got through A and stopped at B.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.problem-cam'), ga: all('.problem-ga'), gb: all('.problem-gb'), end: all('.problem-end'), tks: all('.problem-t'), a: kit.stage.querySelector('.problem-a'), b: kit.stage.querySelector('.problem-b') });
+  },
+  render(t) {
+    W.push(this.cam, t, 15, 1, 1.02);
+    this.ga.forEach(el => { const p = eob(seg(t, 0.4, 0.9), 1.6); el.style.opacity = Math.min(1, seg(t, 0.4, 0.5)); el.style.transform = 'translateY(' + lerp(-60, 0, p) + 'px)'; });
+    this.gb.forEach(el => { const p = eob(seg(t, 1.0, 1.5), 1.6); el.style.opacity = Math.min(1, seg(t, 1.0, 1.1)); el.style.transform = 'translateY(' + lerp(-60, 0, p) + 'px)'; });
+    this.end.forEach(el => { el.style.opacity = eo(seg(t, 1.5, 2.0)); });
+    this.tks.forEach((el, i) => {
+      const stop = TK[i][1] - (TK[i][1] === END ? TW - 30 : TW + 20), a = 2.4 + i * 0.25;
+      const arr = a + 2.4 * (stop - X0) / (END - X0) + 0.6, go = eio(seg(t, a, arr));
+      const arrived = t >= arr, failed = TK[i][1] !== END;
+      const shake = arrived && failed ? 10 * Math.sin((t - arr) * 16) * Math.exp(-(t - arr) * 2.5) : 0;
+      el.style.opacity = Math.min(1, seg(t, a - 0.3, a));
+      el.style.transform = 'translateX(' + (lerp(X0, stop, go) + shake) + 'px)';
+      el.style.background = arrived ? (failed ? 'var(--accent)' : 'var(--main)') : 'var(--second)';
+    });
+    TextFx.fadeFromRight(this.a, t, 6.6);
+    const b = eo(seg(t, 8.4, 9.0));
+    this.b.style.opacity = b; this.b.style.transform = 'translateX(' + lerp(26, 0, b) + 'px)';
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const FX = [
+  ['1', 'Make help easier to reach', ['Human'], ['Clearer service signage and routes to help', 'A brief acknowledgement of customers who wait', 'Clear roles for answering requests, coordinated with checkout and restocking'], ''],
+  ['2', 'Connect customers with expertise', ['Human'], ['Hand over to a knowledgeable colleague, or explain the next step', 'Ask about use, budget, performance and compatibility', 'Explain why a product fits, not only where it is'], ''],
+  ['3', 'Better information at the point of choice', ['Physical', 'Digital', 'AI'], ['Check shelf labels and product placement', 'Comparisons that match online and in store, accessories included', 'AI support as an aid to staff, not a replacement'], 'ink']
+];
+kit.scene('fixes', {
+  init(kit) {
+    const chip = c => '<span class="chip" style="' + (c === 'AI' ? 'background:var(--accent);border-color:var(--accent);color:var(--ground)' : '') + '">' + c + '</span>';
+    kit.stage.append(kit.h('<div class="ground"><div class="fixes-cam" style="position:absolute;inset:0;transform-origin:960px 560px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Recommendations · proposed, not yet tested</p><h2 class="line md fixes-line">Three improvements</h2></div>' +
+      W.rail('fixes-rail', 120, 272, 1680) +
+      FX.map((f, i) => '<div class="tag ' + f[4] + ' fixes-c" style="left:' + (140 + i * 560) + 'px;top:298px;width:520px;min-height:640px;transform-origin:260px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:16px"><div style="display:flex;gap:10px">' + f[2].map(chip).join('') + '</div>' +
+        '<span class="line" style="font-size:62px;line-height:1">' + f[1] + '</span>' +
+        f[3].map(b => '<div class="fixes-b" style="display:flex;gap:14px;align-items:flex-start;font-size:29px;line-height:1.3"><span style="flex:none;width:12px;height:12px;margin-top:13px;border-radius:2px;background:var(--ground)"></span><span>' + b + '</span></div>').join('') + '</div></div>').join('') +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.fixes-cam'), line: kit.stage.querySelector('.fixes-line'), rail: kit.stage.querySelector('.fixes-rail'), cards: all('.fixes-c'), bs: all('.fixes-b') });
+  },
+  render(t) {
+    W.push(this.cam, t, 19, 1, 1.02);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.3, 0.9)) + ')';
+    this.cards.forEach((el, i) => W.hang(el, t, 1.0 + i * 3.6, i, 120));
+    this.bs.forEach((el, k) => { const i = Math.floor(k / 3), a = 1.0 + i * 3.6 + 0.9 + (k % 3) * 0.6, p = eo(seg(t, a, a + 0.45)); el.style.opacity = p; el.style.transform = 'translateX(' + lerp(20, 0, p) + 'px)'; });
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const M = ['Waiting time for help', 'Completed handovers', 'Unresolved questions', 'Recommendation accuracy', 'Understanding of the product choice'];
+kit.scene('test', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="test-cam" style="position:absolute;inset:0;transform-origin:960px 560px">' +
+      '<div class="words" style="left:140px;top:120px;width:1640px;gap:18px"><p class="eyebrow">Evaluation</p><h2 class="line md test-line">Test it before rolling it out</h2>' +
+      '<p class="sub test-sub">Pilot the improvements in selected stores and track five measures.</p></div>' +
+      W.rail('test-rail', 120, 452, 1680) +
+      M.map((m, i) => '<div class="tag ink test-t" style="left:' + (140 + i * 332) + 'px;top:478px;width:312px;min-height:250px;transform-origin:156px -14px"><div style="display:flex;flex-direction:column;gap:14px"><span class="mono" style="font-size:24px">0' + (i + 1) + '</span><span class="line sm" style="font-size:46px">' + m + '</span></div></div>').join('') +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.test-cam'), line: kit.stage.querySelector('.test-line'), sub: kit.stage.querySelector('.test-sub'), rail: kit.stage.querySelector('.test-rail'), tags: all('.test-t') });
+  },
+  render(t) {
+    W.push(this.cam, t, 10, 1, 1.025);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    const s = eo(seg(t, 1.0, 1.5));
+    this.sub.style.opacity = s; this.sub.style.transform = 'translateX(' + lerp(26, 0, s) + 'px)';
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 1.4, 2.0)) + ')';
+    this.tags.forEach((el, i) => W.hang(el, t, 2.0 + i * 0.5, i, 100));
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+const C = [
+  ['Environmental', 'Fewer incompatible accessories and needless replacements, such as the right brush head for a toothbrush already owned (MS6). Fewer repeat trips just to get advice.', ''],
+  ['Social', 'Easier access for customers who find technical products hard, and no need to repeat themselves after a handover. Staff take on more, alongside checkout and restocking.', 'ink'],
+  ['Financial', 'Fewer unsuitable purchases and avoidable returns, weighed against the time for handovers, training and keeping product information precise.', '']
+];
+kit.scene('sustain', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="sustain-cam" style="position:absolute;inset:0;transform-origin:960px 560px">' +
+      '<div class="words" style="left:140px;top:80px;width:1640px;gap:14px"><p class="eyebrow">Sustainability · possible effects, not measured</p><h2 class="line md sustain-line">Who benefits, and who bears the cost?</h2><p class="mono dim" style="font-size:22px">After Carlborg et al. (2024)</p></div>' +
+      W.rail('sustain-rail', 120, 318, 1680) +
+      C.map((c, i) => '<div class="tag ' + c[2] + ' sustain-c" style="left:' + (140 + i * 560) + 'px;top:344px;width:520px;min-height:420px;transform-origin:260px -14px">' +
+        '<div style="display:flex;flex-direction:column;gap:18px"><span class="line" style="font-size:68px;line-height:1">' + c[0] + '</span>' +
+        '<span style="font-size:30px;line-height:1.34">' + c[1] + '</span></div></div>').join('') +
+      '<div class="words" style="left:140px;top:850px;width:1500px"><p class="sub sustain-b">The visits ended at product choice, so effects on returns, repeat trips and product lifetimes remain to be tested in the pilot.</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const all = s => [...kit.stage.querySelectorAll(s)];
+    Object.assign(this, { cam: kit.stage.querySelector('.sustain-cam'), line: kit.stage.querySelector('.sustain-line'), rail: kit.stage.querySelector('.sustain-rail'), cards: all('.sustain-c'), b: kit.stage.querySelector('.sustain-b') });
+  },
+  render(t) {
+    W.push(this.cam, t, 16, 1, 1.02);
+    TextFx.fadeFromRight(this.line, t, 0.1);
+    this.rail.style.transform = 'scaleX(' + eo(seg(t, 0.4, 1.0)) + ')';
+    this.cards.forEach((el, i) => W.hang(el, t, 1.2 + i * 3.0, i, 120));
+    const b = eo(seg(t, 10.6, 11.2));
+    this.b.style.opacity = b; this.b.style.transform = 'translateX(' + lerp(26, 0, b) + 'px)';
+  },
+});
+})();
+
+(()=>{const { seg, eo, eio, eob, lerp, TextFx } = kit;
+kit.scene('close', {
+  init(kit) {
+    kit.stage.append(kit.h('<div class="ground"><div class="close-cam" style="position:absolute;inset:0;transform-origin:960px 420px">' +
+      W.sign('close-hang', 960, 150, 1400, 250, 104, 'Finding the product is only the first step.') +
+      '<div class="words" style="left:260px;top:500px;width:1400px;align-items:center;text-align:center;gap:26px">' +
+      '<p class="line md close-a">Understanding the right choice is what completes the customer experience.</p>' +
+      '<div class="close-u" style="width:220px;height:10px;border-radius:5px;background:var(--accent);transform-origin:50% 50%"></div>' +
+      '<p class="eyebrow close-b">MST 0220 Customer Experience Management · BI · 2026</p>' +
+      '<p class="mono dim close-c" style="font-size:22px;line-height:1.5">Sources: 6 mystery-shopping visits, 19 October – 3 November 2026 · 74 Google Maps reviews, collected 26 October 2026</p></div>' +
+      '</div><div class="edge"></div></div>'));
+    const q = s => kit.stage.querySelector(s);
+    Object.assign(this, { cam: q('.close-cam'), hang: q('.close-hang'), a: q('.close-a'), u: q('.close-u'), b: q('.close-b'), c: q('.close-c') });
+  },
+  render(t) {
+    this.cam.style.transform = 'scale(' + lerp(1.02, 1, eio(seg(t, 0, 11))) + ')';
+    const drop = eob(seg(t, 0, 0.8), 1.5);
+    const sw = 1.8 * Math.exp(-Math.max(0, t - 0.8) * 0.8) * Math.sin(Math.max(0, t - 0.8) * 3) + 0.3 * Math.sin(t * 1.4);
+    this.hang.style.transform = 'translateY(' + lerp(-700, 0, drop) + 'px) rotate(' + (sw * 0.5).toFixed(2) + 'deg)';
+    this.hang.style.opacity = Math.min(1, seg(t, 0, 0.1));
+    TextFx.fadeFromRight(this.a, t, 1.4);
+    this.u.style.transform = 'scaleX(' + eo(seg(t, 2.9, 3.4)) + ')';
+    [[this.b, 3.4], [this.c, 3.8]].forEach(([el, k]) => { const e = eo(seg(t, k, k + 0.5)); el.style.opacity = e; el.style.transform = 'translateY(' + lerp(16, 0, e) + 'px)'; });
+  },
+});
+})();
+kit.score(function (S, T) {
+  const BPM = 84, B = 60 / BPM;
+  S.tempo(BPM, { t0: 0 });
+  S.program('pad', 'pad', { rev: 0.6, gain: -3 }); S.program('keys', 'ep', { rev: 0.3, gain: -2 }); S.program('bass', 'bass', { gain: -3 }); S.program('mallet', 'marimba', { rev: 0.3, gain: -4 }); S.program('bell', 'glock', { rev: 0.45, gain: -8 });
+  const CH = [['F3', 'A3', 'C4', 'E4'], ['D3', 'F3', 'A3', 'C4'], ['Bb2', 'D3', 'F3', 'A3'], ['C3', 'E3', 'G3', 'Bb3']];
+  const RT = ['F2', 'D2', 'Bb1', 'C2'];
+  const ids = ['intro', 'method', 'journey', 'day-one', 'later', 'first-move', 'outcomes', 'reviews', 'split', 'lenses', 'problem', 'fixes', 'test', 'sustain', 'close'];
+  const drumsIn = { method: 1, reviews: 1, split: 1, fixes: 1 };
+  ids.forEach((id, k) => {
+    const t0 = T[id], t1 = k < ids.length - 1 ? T[ids[k + 1]] : T.END;
+    const c = CH[k % 4];
+    S.chord('pad', c, { t: t0, dur: t1 - t0 + 0.3, vel: 30 });
+    for (let t = t0; t < t1 - 0.5; t += 4 * B) {
+      const half = Math.floor((t - t0) / (8 * B)) % 2;
+      S.chord('keys', half ? CH[(k + 2) % 4] : c, { t: t, dur: 3.6 * B, vel: 36 });
+      S.note('bass', half ? RT[(k + 2) % 4] : RT[k % 4], { t: t, dur: 1.5 * B, vel: 58 });
+    }
+    const b0 = Math.ceil((t0 + 0.3) / B), n = Math.max(0, Math.floor(((t1 - 0.3) / B - b0) / 4));
+    if (n > 0) {
+      S.pattern('mallet', 'x...x.x.', { from: b0, repeat: n, pitch: ['C5', 'A4', 'F5', 'G4'], vel: 34 });
+      if (drumsIn[id]) S.drums({ hat: '..o...o.', sidestick: '....x...' }, { from: b0, repeat: n, vel: 30 });
+    }
+  });
+  const pop = (t, v) => S.fx('pop', t, { vel: v || 32 });
+  S.fx('thud', 0, { vel: 50 }); S.note('bell', 'C6', { t: 1.0, dur: 1.5, vel: 44 });
+  for (let i = 0; i < 4; i++) pop(T.method + 0.9 + i * 0.5 + 0.45, 36);
+  for (let i = 0; i < 5; i++) pop(T.journey + 1.0 + i * 0.3 + 0.4, 28);
+  S.fx('roll', T.journey + 2.6, { dur: 2.1, vel: 26 }); S.fx('thud', T.journey + 5.0, { vel: 48 });
+  for (let i = 0; i < 3; i++) { pop(T['day-one'] + 1.4 + i * 3.2 + 0.45, 36); S.fx('thud', T['day-one'] + 1.4 + i * 3.2 + 1.7, { vel: 44 }); }
+  for (let i = 0; i < 3; i++) { const a = T.later + 1.4 + i * 4.0; pop(a + 0.45, 36); if (i !== 1) { S.fx('roll', a + 2.4, { dur: 0.6, vel: 26 }); S.fx('ding', a + 3.25, { vel: 36 }); } S.fx('thud', a + 3.5, { vel: 44 }); }
+  for (let i = 0; i < 6; i++) S.fx('tick', T['first-move'] + 0.35 + i * 0.55, { vel: 30 });
+  S.note('bass', 'D2', { t: T['first-move'] + 3.7, dur: 2, vel: 70 }); S.note('bell', 'A5', { t: T['first-move'] + 3.7, dur: 1.4, vel: 40 });
+  for (let i = 0; i < 3; i++) { pop(T.outcomes + 0.9 + i * 0.45 + 0.45, 34); pop(T.outcomes + 2.9 + i * 0.45 + 0.45, 34); }
+  S.fx('ding', T.outcomes + 5.7, { vel: 34 });
+  S.fx('roll', T.reviews + 0.05, { dur: 1.1, vel: 24 }); S.fx('whoosh', T.reviews + 1.2, { dur: 1.2, vel: 24 }); S.fx('roll', T.reviews + 3.6, { dur: 1.5, vel: 22 });
+  [1.4, 4.0].forEach(a => { S.fx('whoosh', T.split + a, { dur: 1.2, vel: 26 }); S.fx('ding', T.split + a + 1.5, { vel: 38 }); });
+  pop(T.problem + 0.6, 34); pop(T.problem + 1.2, 34);
+  S.fx('roll', T.problem + 2.4, { dur: 3.5, vel: 20 });
+  [3.49, 3.74, 4.78].forEach(a => S.fx('thud', T.problem + a, { vel: 46 }));
+  [5.73, 5.98, 6.23].forEach(a => S.fx('ding', T.problem + a, { vel: 32 }));
+  for (let i = 0; i < 3; i++) { pop(T.fixes + 1.0 + i * 3.6 + 0.45, 38); for (let j = 0; j < 3; j++) S.fx('tick', T.fixes + 1.0 + i * 3.6 + 0.9 + j * 0.6, { vel: 24 }); }
+  for (let i = 0; i < 5; i++) pop(T.test + 2.0 + i * 0.5 + 0.45, 32);
+  for (let i = 0; i < 4; i++) pop(T.lenses + 1.2 + i * 3.0 + 0.45, 36);
+  S.note('bell', 'E5', { t: T.lenses + 11.6, dur: 1.4, vel: 38 });
+  for (let i = 0; i < 3; i++) pop(T.sustain + 1.2 + i * 3.0 + 0.45, 36);
+  S.fx('revswell', T.close, { dur: 1.2, vel: 40 }); S.fx('thud', T.close + 0.75, { vel: 50 });
+  S.chord('keys', ['F3', 'A3', 'C4', 'E4', 'A4'], { t: T.close + 0.75, dur: 6, vel: 52 }); S.note('bass', 'F2', { t: T.close + 0.75, dur: 5, vel: 66 });
+  S.fx('chime', T.close + 3.0, { vel: 44 });
+  S.master({ gain: -7, fadeOut: 2.5 });
+});
+
+const timeline=[{"id": "intro", "name": "Introduction", "dur": 10, "desc": "A hanging store sign carries the title; the research question settles in below it."}, {"id": "method", "name": "Primary research", "dur": 10, "desc": "Four price tags state the data: 6 visits, 4 stores, 3 dates, 74 reviews, no purchases observed."}, {"id": "journey", "name": "The journey", "dur": 12, "desc": "Five wayfinding signs map the path from online search to an informed choice; the marker stalls at getting help."}, {"id": "day-one", "name": "19 October", "dur": 16, "desc": "Three visit cards from the first day clip onto a rail, each stamped with its outcome."}, {"id": "later", "name": "26 Oct and 3 Nov", "dur": 20, "desc": "The three later visits: vague heater advice at Stenersgata 2, a deferred request at Torggata, clear toothbrush advice at Storo."}, {"id": "first-move", "name": "Who moved first", "dur": 13, "desc": "Six rows show who started contact and the recorded wait: the customer, every time."}, {"id": "outcomes", "name": "Three and three", "dur": 13, "desc": "Three visits ended with a suitable product, three did not; one visit held both."}, {"id": "reviews", "name": "74 reviews", "dur": 12, "desc": "The Google review sample: stores, ratings, recency and its limits."}, {"id": "split", "name": "Access vs. advice", "dur": 12, "desc": "Two bars: access to assistance mostly negative, quality of advice mostly positive."}, {"id": "lenses", "name": "Four lenses", "dur": 18, "desc": "Four theory cards hang on the rail, each with what the evidence supports through that lens."}, {"id": "problem", "name": "The problem", "dur": 15, "desc": "Two gates on the path, Can I get help and Can the advice help me choose; the six visits travel and stop where they stopped."}, {"id": "fixes", "name": "Recommendations", "dur": 19, "desc": "Three proposed improvements hang on the rail with their concrete steps."}, {"id": "test", "name": "How to test it", "dur": 10, "desc": "A pilot in selected stores and the five measures to track."}, {"id": "sustain", "name": "Sustainability", "dur": 16, "desc": "Three columns weigh possible environmental, social and financial effects of the recommendations."}, {"id": "close", "name": "Conclusion", "dur": 11, "desc": "The closing message, the course and the sources."}];
+
+let total=0;const T={};timeline.forEach(s=>{s.start=total;T[s.id]=total;total+=s.dur});T.END=total;
+const stage=kit.stage,screen=document.getElementById('screen'),play=document.getElementById('play'),seek=document.getElementById('seek'),time=document.getElementById('time'),chapters=document.getElementById('chapters');seek.max=total;
+timeline.forEach((s,i)=>chapters.add(new Option(`${String(i+1).padStart(2,'0')} · ${s.name}`,i)));
+let pos=0,playing=false,active=-1,last=0,sound=false,ctx=null,nodes=[];
+function resize(){let scale=Math.min(screen.clientWidth/1920,screen.clientHeight/1080);stage.style.transform=`scale(${scale})`;stage.style.left=(screen.clientWidth-1920*scale)/2+'px';stage.style.top=(screen.clientHeight-1080*scale)/2+'px'}new ResizeObserver(resize).observe(screen);
+const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+function render(){let i=timeline.findIndex(s=>pos<s.start+s.dur);if(i<0)i=timeline.length-1;if(i!==active){stage.replaceChildren();active=i;scenes.get(timeline[i].id).init(kit);chapters.value=i}scenes.get(timeline[i].id).render(pos-timeline[i].start);seek.value=pos;time.textContent=fmt(pos)+' / '+fmt(total)}
+function stopAudio(){nodes.forEach(n=>{try{n.stop()}catch{}});nodes=[]}
+const events=[];let bpm=84;const note=(instrument,pitch,o)=>events.push({instrument,pitch,...o});const api={tempo:b=>bpm=b,program:()=>{},note,chord:(i,ps,o)=>ps.forEach(p=>note(i,p,o)),pattern:(i,pat,o)=>{for(let r=0;r<o.repeat;r++)for(let j=0;j<pat.length;j++)if(pat[j]==='x')note(i,o.pitch[(r+j)%o.pitch.length],{t:(o.from+r*pat.length*.5+j*.5)*60/bpm,dur:.25,vel:o.vel})},drums:()=>{},fx:()=>{},master:()=>{}};window.makeScore(api,T);
+function audioStart(){stopAudio();if(!sound||!playing)return;ctx??=new AudioContext();ctx.resume();for(const e of events){if(e.t+e.dur<pos||e.t>=total)continue;let match=e.pitch.match(/^([A-G])([b#]?)(\d)$/);if(!match)continue;let midi=12*(Number(match[3])+1)+({C:0,D:2,E:4,F:5,G:7,A:9,B:11}[match[1]])+(match[2]==='b'?-1:match[2]==='#'?1:0);const o=ctx.createOscillator(),g=ctx.createGain();o.type=e.instrument==='bass'?'triangle':'sine';o.frequency.value=440*2**((midi-69)/12);let at=ctx.currentTime+Math.max(0,e.t-pos),dur=Math.max(.05,Math.min(e.dur,e.t+e.dur-pos,total-Math.max(pos,e.t)));let gain=(e.vel||30)/127*.045;g.gain.setValueAtTime(0,at);g.gain.linearRampToValueAtTime(gain,at+Math.min(.05,dur/3));g.gain.exponentialRampToValueAtTime(.0001,at+dur);o.connect(g);g.connect(ctx.destination);o.start(at);o.stop(at+dur+.02);nodes.push(o)}}
+function toggle(){if(pos>=total)pos=0;playing=!playing;play.textContent=playing?'Pause':'Play';play.setAttribute('aria-label',playing?'Pause presentation':'Play presentation');last=performance.now();audioStart();render()}
+play.onclick=toggle;seek.oninput=()=>{pos=Number(seek.value);render();audioStart()};chapters.onchange=()=>{pos=timeline[Number(chapters.value)].start;render();audioStart()};document.getElementById('sound').onclick=e=>{sound=!sound;e.target.textContent=sound?'Sound on':'Sound off';e.target.setAttribute('aria-pressed',sound);audioStart()};document.getElementById('full').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else if(screen.requestFullscreen)screen.requestFullscreen();else screen.webkitRequestFullscreen?.()};document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','SELECT','BUTTON'].includes(e.target.tagName)){e.preventDefault();toggle()}});
+function tick(now){if(playing){pos=Math.min(total,pos+(now-last)/1000);if(pos>=total){playing=false;play.textContent='Replay';stopAudio()}render()}last=now;requestAnimationFrame(tick)}render();resize();requestAnimationFrame(tick);
+window.checkScenes=()=>{let original=pos;for(let s of timeline)for(let t of [0,.5,s.dur/2,s.dur-.01]){pos=s.start+t;render()}pos=original;render();return timeline.length};
+</script>
